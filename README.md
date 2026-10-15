@@ -2,7 +2,7 @@
 
 Team name: 
 
-Members: Simon Cochran, 
+Members: Simon Cochran, Kelly Zheng Feng, 
 
 Project Purpose: 
 
