@@ -1,6 +1,6 @@
 # Biotech Procurement Platform
 
-#### Team name: 
+#### Team name: Undecided
 
 #### Members: Simon Cochran, Kelly Zheng Feng, Naresh Kharel, Wanzi Xiao
 
