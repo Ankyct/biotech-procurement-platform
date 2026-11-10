@@ -43,7 +43,8 @@ The frontend is organized under `frontend/`, while database initialization scrip
 
 ### Subsystem Decomposition Diagram
 
-![Subsystem Decomposition](docs/architecture/subsystem-decomposition.png)
+<img width="1316" height="1242" alt="UML Decomposition Diagram" src="https://github.com/user-attachments/assets/0108a650-939c-44be-8767-ae14eb3c73f7" />
+
 
 ### Deployment Diagram
 
