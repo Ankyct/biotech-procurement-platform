@@ -48,7 +48,7 @@ The frontend is organized under `frontend/`, while database initialization scrip
 
 ### Deployment Diagram
 
-![Deployment Diagram](docs/architecture/deployment-diagram.png)
+![Deployment Diagram](docs/architecture/Sprint%204%20UML%20Deployment%20Diagram.jpg)
 
 
 ## How to Run the Project Skeleton
