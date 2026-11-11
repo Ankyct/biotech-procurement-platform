@@ -49,3 +49,65 @@ The frontend is organized under `frontend/`, while database initialization scrip
 ### Deployment Diagram
 
 ![Deployment Diagram](docs/architecture/deployment-diagram.png)
+
+
+## How to Run the Project Skeleton
+
+### Prerequisites
+- Java JDK 21 or later (tested with JDK 25)
+- Maven Wrapper (included in the repository)
+- Git
+
+### Setup and Run
+
+1. Clone the repository:
+
+   ```bash
+   git clone https://github.com/Ankyct/biotech-procurement-platform.git
+   ```
+
+2. Navigate to the backend directory:
+
+   ```bash
+   cd biotech-procurement-platform/backend
+   ```
+
+3. Start the Spring Boot application:
+
+   **Windows:**
+   ```powershell
+   .\mvnw.cmd spring-boot:run
+   ```
+
+   **macOS/Linux:**
+   ```bash
+   ./mvnw spring-boot:run
+   ```
+
+### Verify That It Works
+
+Once Spring Boot starts successfully, open the following URL in a browser:
+
+http://localhost:8080/api/products
+
+Expected response:
+
+```text
+ProductServices API is running
+```
+
+This endpoint serves as the initial implementation of the ProductServices subsystem and verifies that the project skeleton can run.
+
+## Current Implementation Status
+
+### What Works
+- Spring Boot backend starts successfully on port 8080.
+- The project contains the eight subsystem packages defined in Sprint 3.
+- ProductServices includes an initial `ProductController` class.
+- The `GET /api/products` endpoint responds successfully with a test message.
+
+### What Is Not Implemented Yet
+- Product search, item details, and price comparison.
+- Backend integration with PostgreSQL.
+- Business logic for the remaining subsystems.
+- Frontend-backend integration.
