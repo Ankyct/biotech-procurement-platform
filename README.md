@@ -57,6 +57,7 @@ The frontend is organized under `frontend/`, while database initialization scrip
 - Java JDK 21 or later (tested with JDK 25)
 - Maven Wrapper (included in the repository)
 - Git
+- Node v26.13.0
 
 ### Setup and Run
 
