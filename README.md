@@ -108,7 +108,45 @@ This endpoint serves as the initial implementation of the ProductServices subsys
 - The `GET /api/products` endpoint responds successfully with a test message.
 
 ### What Is Not Implemented Yet
-- Product search, item details, and price comparison.
+- Product search and price comparison (US3 integration pending).
 - Backend integration with PostgreSQL.
 - Business logic for the remaining subsystems.
-- Frontend-backend integration.
+- Production hosting and database-backed product details.
+
+
+## US4: Product and service details
+
+The in-memory demo catalog includes two products and one service. It does not read
+PostgreSQL; its IDs are independent of the database seed IDs. Prices use USD for
+this MVP. `GET /api/products/{id}` returns `id`, `name`, `description`, `price`,
+`vendor`, and a string-to-string `specifications` object. Missing numeric IDs return
+404; malformed IDs return 400. The existing `/api/products` skeleton response remains
+unchanged.
+
+Run the backend as described above, then in a second terminal (Node.js 22):
+
+```sh
+cd frontend
+npm ci
+npm run dev
+```
+
+Open the Vite URL shown in the terminal. The demo catalog links to `/products/1`,
+`/products/2`, and `/products/3`. The detail page fetches the backend API and supports
+loading, not found, and retry states. Vite proxies `/api` to `localhost:8080`.
+
+US3 integration contract: search results must contain the unique product `id` and
+link to `/products/{id}`. Replace the demo catalog with US3 results when ready;
+coordinate real IDs before switching to PostgreSQL. Production hosting must serve
+`index.html` for frontend routes and forward `/api` requests to Spring Boot.
+
+Validation (also run by pull request CI):
+
+```sh
+cd backend
+bash ./mvnw -B -ntp clean verify
+cd ../frontend
+npm ci
+npm test
+npm run build
+```
