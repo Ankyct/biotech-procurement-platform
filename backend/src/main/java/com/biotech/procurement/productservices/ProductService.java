@@ -4,6 +4,8 @@ import java.math.BigDecimal;
 import java.util.Map;
 import java.util.Optional;
 import org.springframework.stereotype.Service;
+import java.util.List;
+import java.util.Locale;
 
 @Service
 public class ProductService {
@@ -25,5 +27,15 @@ public class ProductService {
 
     public Optional<Product> findById(long id) {
         return Optional.ofNullable(products.get(id));
+    }
+
+    public List<Product> searchProduct(String keyword) {
+        String searchItem = keyword.trim().toLowerCase(Locale.ROOT);
+
+        return products.values().stream()
+            .filter(product -> product.name().toLowerCase(Locale.ROOT).contains(searchItem) ||
+                               product.description().toLowerCase(Locale.ROOT).contains(searchItem))
+            .sorted((p1, p2) -> p1.name().compareToIgnoreCase(p2.name()))
+            .toList();
     }
 }
