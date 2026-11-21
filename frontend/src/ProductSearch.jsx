@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import AuthStatus from './AuthStatus';
 
 export default function ProductSearch() {
     const [keyword, setKeyword] = useState('');
@@ -28,6 +29,7 @@ export default function ProductSearch() {
 
     return (
         <main>
+            <AuthStatus />
             <h1>Products & Services</h1>
             <p>Search laboratory products and services.</p>
 

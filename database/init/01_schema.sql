@@ -10,3 +10,17 @@ INSERT INTO products (name, description, price, vendor_name)
 VALUES
     ('PCR Kit', 'PCR laboratory kit', 120.00, 'BioSupplier A'),
     ('Pipette Tips', 'Sterile pipette tips', 35.00, 'BioSupplier B');
+
+
+
+
+CREATE TABLE IF NOT EXISTS users (
+    id BIGSERIAL PRIMARY KEY,
+    username VARCHAR(255) NOT NULL,
+    password VARCHAR(255) NOT NULL
+)
+
+INSERT INTO users (username, password)
+VALUES
+    ('SimonC', 'Password123'),
+    ('Vendor1', 'VendorPassword456')

@@ -171,3 +171,22 @@ Matching results are displayed as cards showing the product name, vendor, price,
 The backend provides `GET /api/products/search?keyword=PCR` for product searches.
 
 Currently, the search uses in-memory sample data. PostgreSQL integration will be added later.
+
+
+## US1: Login to Profile
+
+Users can click login at the top right of the application to login to their account. 
+
+You may switch between a customer and vendor login by clicking on either the Customer or Vendor selection tabs above the login asking for email and password.
+
+As of right now, this is only implemented as a demo and you may try logging in with the following inputs:
+
+customer email: `customer@example.com`
+customer password: `customer123`
+
+vendor email: `vendor@example.com`
+vendor password: `vendor@example.com`
+
+Upon logging in, a new link pops up next to the now log out button and displays the users preferred name and account type.
+
+Clicking on this will display the users profile, showing their email, preferred name, lab/company they are affiliated with, and account type. 
