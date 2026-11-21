@@ -134,3 +134,65 @@ form button {
 .product-card p {
   margin: 12px 0;
 }
+
+/* Append to the end of styles.css */
+
+.login-form {
+    flex-direction: column;
+    max-width: 420px;
+}
+
+.login-form label {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    font-weight: 600;
+}
+
+.login-form input[type="email"],
+.login-form input[type="password"] {
+    padding: 12px;
+    font: inherit;
+    font-weight: 400;
+    border: 1px solid #b5c4cb;
+    border-radius: 6px;
+}
+
+.login-form [role="alert"] {
+    margin: 0;
+    color: #a12b2b;
+}
+
+.login-form button:disabled {
+    opacity: .6;
+    cursor: not-allowed;
+}
+
+.role-toggle {
+    display: flex;
+    gap: 0;
+}
+
+/* beats the generic "form button" blue so inactive tabs look inactive */
+.login-form .role-toggle button {
+    flex: 1;
+    border: 1px solid #17637b;
+    background: white;
+    color: #17637b;
+    border-radius: 0;
+}
+
+.login-form .role-toggle button:first-child { border-radius: 6px 0 0 6px; }
+.login-form .role-toggle button:last-child  { border-radius: 0 6px 6px 0; }
+
+.login-form .role-toggle button.active {
+    background: #17637b;
+    color: white;
+}
+
+.auth-status {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 12px;
+}
