@@ -51,13 +51,13 @@ The frontend is organized under `frontend/`, while database initialization scrip
 ![Deployment Diagram](docs/architecture/Sprint%204%20UML%20Deployment%20Diagram.jpg)
 
 
-## How to Run the Project Skeleton
+## How to Run the Project
 
 ### Prerequisites
-- Java JDK 21 or later (tested with JDK 25)
-- Maven Wrapper (included in the repository)
+- Java JDK 21 or later
+- Maven Wrapper (included)
 - Git
-- Node v26.13.0
+- Node.js 22 and npm
 
 ### Setup and Run
 
@@ -67,13 +67,11 @@ The frontend is organized under `frontend/`, while database initialization scrip
    git clone https://github.com/Ankyct/biotech-procurement-platform.git
    ```
 
-2. Navigate to the backend directory:
+2. Start the backend:
 
    ```bash
    cd biotech-procurement-platform/backend
    ```
-
-3. Start the Spring Boot application:
 
    **Windows:**
    ```powershell
@@ -85,30 +83,50 @@ The frontend is organized under `frontend/`, while database initialization scrip
    ./mvnw spring-boot:run
    ```
 
-### Verify That It Works
+   The backend runs at `http://localhost:8080`.
 
-Once Spring Boot starts successfully, open the following URL in a browser:
+3. Open another terminal and start the frontend:
 
-http://localhost:8080/api/products
+   From the repository root:
 
-Expected response:
+   ```bash
+   cd frontend
+   npm ci
+   npm run dev
+   ```
 
-```text
-ProductServices API is running
-```
+4. Open `http://localhost:5173` in your browser.
 
-This endpoint serves as the initial implementation of the ProductServices subsystem and verifies that the project skeleton can run.
+Users can search for products and services using the search bar and click a product to view its details.
+
+### API Endpoints
+
+The backend runs at `http://localhost:8080`. The following endpoints can be tested directly in a browser:
+
+- `GET /api/products` — Returns a message confirming the ProductServices API is running.
+- `GET /api/products/search?keyword=PCR` — Searches products by name or description.
+- `GET /api/products/{id}` — Returns the details of a product by its ID.
+
+Example URLs:
+
+- http://localhost:8080/api/products
+- http://localhost:8080/api/products/search?keyword=PCR
+- http://localhost:8080/api/products/2
+
+Currently, product search and product details use in-memory sample data. PostgreSQL integration will be added later.  
 
 ## Current Implementation Status
 
 ### What Works
-- Spring Boot backend starts successfully on port 8080.
-- The project contains the eight subsystem packages defined in Sprint 3.
-- ProductServices includes an initial `ProductController` class.
-- The `GET /api/products` endpoint responds successfully with a test message.
+- Spring Boot backend and React frontend.
+- Product search by name or description.
+- Partial and case-insensitive keyword matching.
+- Search results displayed as product cards.
+- Product details page showing vendor, price, description, and specifications.
+- Navigation from search results to product details.
+- GitHub Actions CI for backend builds and automated tests.
 
 ### What Is Not Implemented Yet
-- Product search and price comparison (US3 integration pending).
 - Backend integration with PostgreSQL.
 - Business logic for the remaining subsystems.
 - Production hosting and database-backed product details.
@@ -123,21 +141,14 @@ this MVP. `GET /api/products/{id}` returns `id`, `name`, `description`, `price`,
 404; malformed IDs return 400. The existing `/api/products` skeleton response remains
 unchanged.
 
-Run the backend as described above, then in a second terminal (Node.js 22):
+Run the backend and frontend as described in the How to Run section.
 
-```sh
-cd frontend
-npm ci
-npm run dev
-```
+Users can search for products on the homepage and click a result to open `/products/{id}`. 
+The detail page fetches product information from the backend and supports loading, not found, 
+and retry states. Vite proxies `/api` to `localhost:8080`.
 
-Open the Vite URL shown in the terminal. The demo catalog links to `/products/1`,
-`/products/2`, and `/products/3`. The detail page fetches the backend API and supports
-loading, not found, and retry states. Vite proxies `/api` to `localhost:8080`.
-
-US3 integration contract: search results must contain the unique product `id` and
-link to `/products/{id}`. Replace the demo catalog with US3 results when ready;
-coordinate real IDs before switching to PostgreSQL. Production hosting must serve
+Product Search (US3) and Product Details (US4) are now integrated. 
+Both features currently use the same in-memory sample data. Production hosting must serve
 `index.html` for frontend routes and forward `/api` requests to Spring Boot.
 
 Validation (also run by pull request CI):
@@ -150,3 +161,13 @@ npm ci
 npm test
 npm run build
 ```
+
+## US3: Search for Products and Services
+
+Users can search for products and services by entering a keyword in the search bar. The search supports partial and case-insensitive matching by product name or description.
+
+Matching results are displayed as cards showing the product name, vendor, price, and description. Clicking a product opens its Product Details page.
+
+The backend provides `GET /api/products/search?keyword=PCR` for product searches.
+
+Currently, the search uses in-memory sample data. PostgreSQL integration will be added later.
