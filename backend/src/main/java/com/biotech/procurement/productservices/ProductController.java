@@ -4,6 +4,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
+import java.util.List;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @RestController
 public class ProductController {
@@ -21,5 +23,10 @@ public class ProductController {
     @GetMapping("/api/products/{id}")
     public ResponseEntity<Product> getProduct(@PathVariable long id) {
         return ResponseEntity.of(productService.findById(id));
+    }
+
+    @GetMapping("/api/products/search")
+    public List<Product> searchProducts(@RequestParam String keyword) {
+        return productService.searchProduct(keyword);
     }
 }
